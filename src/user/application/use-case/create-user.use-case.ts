@@ -1,6 +1,6 @@
 import { User } from 'src/user/domain/entities/user.entety';
-import * as userRepositoryPort from '../ports/user.repository.port';
 import { Inject } from '@nestjs/common';
+import { USER_REPOSITORY, UserRepositoryPort } from '../ports/user.repository.port';
 
 export interface CreateUserDto {
   name: string;
@@ -9,8 +9,8 @@ export interface CreateUserDto {
 
 export class CreateUserUseCase {
   constructor(
-    @Inject(userRepositoryPort.USER_REPOSITORY)
-    private readonly userRepository: userRepositoryPort.UserRepositoryPort,
+    @Inject(USER_REPOSITORY)
+    private readonly userRepository: UserRepositoryPort,
   ) {}
 
   async execute(dto: CreateUserDto): Promise<User> {
